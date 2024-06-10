@@ -38,3 +38,4 @@ classDiagram
     Account "1" -- "*" Transaction : records >
     BankingService "1" -- "*" Account : manages >
     BankingService "1" -- "*" Transaction : processes >
+    Customer "1" -- "1" BankingService : interacts >
