@@ -7,16 +7,16 @@ classDiagram
         +String name
         +String address
         +String phoneNumber
-        +createAccount(): Account
-        +login(): void
-        +logout(): void
+        +createAccount()
+        +login()
+        +logout()
     }
 
     class Account {
         +String accountNumber
         +double balance
-        +deposit(amount: double): void
-        +withdraw(amount: double): void
+        +deposit(amount: double)
+        +withdraw(amount: double)
         +getBalance(): double
     }
 
@@ -25,19 +25,17 @@ classDiagram
         +Date transactionDate
         +double amount
         +String type
-        +execute(): void
+        +execute()
     }
 
     class BankingService {
         +createAccount(customer: Customer): Account
-        +performTransaction(account: Account, transaction: Transaction): void
+        +performTransaction(account: Account, transaction: Transaction)
         +getAccountDetails(accountNumber: String): Account
-        +login(customerID: String, password: String): Boolean
-        +logout(customerID: String): void
     }
 
-    Customer "1" -- "*" Account : "owns >"
-    Account "1" -- "*" Transaction : "records >"
-    BankingService "1" -- "*" Account : "manages >"
-    BankingService "1" -- "*" Transaction : "processes >"
-    BankingService "1" -- "*" Customer : "services >"
+    Customer "1" -- "*" Account : owns >
+    Account "1" -- "*" Transaction : records >
+    BankingService "1" -- "*" Account : manages >
+    BankingService "1" -- "*" Transaction : processes >
+    Customer "1" -- "1" BankingService : interacts >
