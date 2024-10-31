@@ -1,43 +1,33 @@
-# Logical View of the 4+1 Model for a Banking Application
+# Machine Learning Pipeline Flow Chart
 
 ```mermaid
-classDiagram
-    class Customer {
-        +String customerID
-        +String name
-        +String address
-        +String phoneNumber
-        +createAccount(): Account
-        +login(): void
-        +logout(): void
-    }
+flowchart TD
+    A[Data Collection]
+    B[Data Preprocessing]
+    C[Feature Engineering and Selection]
+    D[Model Training]
+    E[Model Evaluation]
+    F[Deployment and Monitoring]
 
-    class Account {
-        +String accountNumber
-        +double balance
-        +deposit(amount: double): void
-        +withdraw(amount: double): void
-        +getBalance(): double
-    }
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
 
-    class Transaction {
-        +String transactionID
-        +Date transactionDate
-        +double amount
-        +String type
-        +execute(): void
-    }
+    B --> |Handle Missing Values|
+    B --> |Standardize/Normalize|
+    B --> |Encode Categorical Variables|
 
-    class BankingService {
-        +createAccount(customer: Customer): Account
-        +performTransaction(account: Account, transaction: Transaction): void
-        +getAccountDetails(accountNumber: String): Account
-        +login(customerID: String, password: String): Boolean
-        +logout(customerID: String): void
-    }
+    C --> |Select Relevant Features|
+    C --> |Target Variable Preparation|
 
-    Customer "1" -- "*" Account : "owns >"
-    Account "1" -- "*" Transaction : "records >"
-    BankingService "1" -- "*" Account : "manages >"
-    BankingService "1" -- "*" Transaction : "processes >"
-    BankingService "1" -- "*" Customer : "services >"
+    D --> |Regression (for continuous dose prediction)|
+    D --> |Classification (for dose categories)|
+    D --> |Cross-validation and Hyperparameter Tuning|
+
+    E --> |Metrics: MAE, MSE, R-squared (for regression)|
+    E --> |Accuracy, Precision, Recall, F1-score (for classification)|
+
+    F --> |Model Deployment (API/cloud-based)|
+    F --> |Model Monitoring and Retraining|
