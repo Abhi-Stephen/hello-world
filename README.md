@@ -1,14 +1,24 @@
 ```mermaid
 flowchart TD
-    A[Data Collection]
-    B[Data Preprocessing <br> - Handle Missing Values <br> - Standardize/Normalize <br> - Encode Categorical Variables]
-    C[Feature Engineering and Selection <br> - Select Relevant Features <br> - Target Variable Preparation]
-    D[Model Training <br> - Regression (for continuous dose prediction) <br> - Classification (for dose categories) <br> - Cross-validation and Hyperparameter Tuning]
-    E[Model Evaluation <br> - Metrics: MAE, MSE, R-squared (for regression) <br> - Accuracy, Precision, Recall, F1-score (for classification)]
-    F[Deployment and Monitoring <br> - Model Deployment (API/cloud-based) <br> - Model Monitoring and Retraining]
+    A[Data Collection] --> B[Data Preprocessing]
+    B --> C[Feature Engineering and Selection]
+    C --> D[Model Training]
+    D --> E[Model Evaluation]
+    E --> F[Deployment and Monitoring]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
+    B --> B1[Handle Missing Values]
+    B --> B2[Standardize/Normalize]
+    B --> B3[Encode Categorical Variables]
+
+    C --> C1[Select Relevant Features]
+    C --> C2[Target Variable Preparation]
+
+    D --> D1[Regression (for continuous dose prediction)]
+    D --> D2[Classification (for dose categories)]
+    D --> D3[Cross-validation and Hyperparameter Tuning]
+
+    E --> E1[Metrics: MAE, MSE, R-squared (for regression)]
+    E --> E2[Accuracy, Precision, Recall, F1-score (for classification)]
+
+    F --> F1[Model Deployment (API/cloud-based)]
+    F --> F2[Model Monitoring and Retraining]
